@@ -11,6 +11,7 @@ using Command;
 using EII;
 using Adapter;
 using Composite;
+using TemplateMethod;
 
 namespace VSCode
 {
@@ -18,7 +19,15 @@ namespace VSCode
     {
         static void Main(string[] args)
         {
-            Composite();
+            TemplateMethod();
+        }
+
+        static void TemplateMethod()
+        {
+            var jsonProvider = new JsonProvider();
+            var dbProvider = new DbProvider();
+            jsonProvider.RegisterProviders();
+            dbProvider.RegisterProviders();
         }
 
         static void Composite()
