@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using AbstractFactory.Factory;
 using Strategy;
 using State;
@@ -12,6 +14,8 @@ using EII;
 using Adapter;
 using Composite;
 using TemplateMethod;
+using Indexer;
+using System.Linq;
 
 namespace VSCode
 {
@@ -19,7 +23,34 @@ namespace VSCode
     {
         static void Main(string[] args)
         {
-            TemplateMethod();
+            Yield();
+        }
+
+        static void Yield()
+        {
+            var someNumbers = Enumerable.Range(1, 10);
+            var evenNumbers = GetEvenNumbersUsingYield(someNumbers);
+            foreach (var number in evenNumbers)
+            {
+                System.Console.WriteLine($"Even number: {number}");
+            }
+        }
+
+        static IEnumerable<int> GetEvenNumbersUsingYield(IEnumerable<int> numbers)
+        {
+            foreach (var number in numbers)
+            {
+                if(number % 2 == 0) 
+                {
+                    yield return number;
+                }
+            }
+        }
+
+        static void Indexer()
+        {
+            var reiska = new Student();
+            System.Console.WriteLine($"Reiskan toinen koenumero: {reiska[1]}");
         }
 
         static void TemplateMethod()
