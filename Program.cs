@@ -16,6 +16,7 @@ using Composite;
 using TemplateMethod;
 using Indexer;
 using System.Linq;
+using StaticCtorException;
 
 namespace VSCode
 {
@@ -23,7 +24,31 @@ namespace VSCode
     {
         static void Main(string[] args)
         {
-            Yield();
+            StaticCtorException();
+        }
+
+        static void StaticCtorException()
+        {
+            try
+            {
+            // throws exception
+            var str = ClassWithStaticCtor.Name;                
+            }
+            catch (System.Exception)
+            {
+                System.Console.WriteLine("Exception");
+            }
+
+            try 
+            {
+                // doesn't work
+                var instance = new ClassWithStaticCtor();
+            }
+            catch (System.Exception)
+            {
+                System.Console.WriteLine("Class is kaput");
+            }            
+
         }
 
         static void Yield()
