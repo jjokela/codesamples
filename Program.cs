@@ -17,6 +17,7 @@ using TemplateMethod;
 using Indexer;
 using System.Linq;
 using StaticCtorException;
+using Logger;
 
 namespace VSCode
 {
@@ -24,7 +25,12 @@ namespace VSCode
     {
         static void Main(string[] args)
         {
-            StaticCtorException();
+            Logger();    
+        }
+
+        static void Logger()
+        {
+            var logger = new LoggerTest();
         }
 
         static void StaticCtorException()
