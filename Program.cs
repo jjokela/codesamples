@@ -25,12 +25,29 @@ namespace VSCode
     {
         static void Main(string[] args)
         {
-            Logger();    
+            //Logger();    
         }
 
         static void Logger()
         {
             var logger = new LoggerTest();
+            CombineIEnumerables();
+        }
+
+        static void CombineIEnumerables() 
+        {
+            var names = new string[] { "Risto", "Pertti", "Erska" };
+            var ages = new int[] { 34, 64, 29 };
+            var combined = names.Zip(ages, CombineNameAndAge);
+            foreach (var item in combined)
+            {
+                System.Console.WriteLine(item);
+            }
+        }
+
+        static string CombineNameAndAge(string name, int age) 
+        {
+            return name + " : " + age;
         }
 
         static void StaticCtorException()
