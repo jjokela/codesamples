@@ -18,6 +18,7 @@ using Indexer;
 using System.Linq;
 using StaticCtorException;
 using Logger;
+using PropertyInitializers;
 
 namespace VSCode
 {
@@ -25,7 +26,16 @@ namespace VSCode
     {
         static void Main(string[] args)
         {
-            //Logger();    
+            PropertyInitializers();    
+        }
+
+        static void PropertyInitializers()
+        {
+            var test = new PropertyInitializerTest();
+            
+            System.Console.WriteLine($"TestInt: {test.TestInt}");
+            System.Console.WriteLine($"Overridden in constructor from 200 to => {test.TestIntOverride}");
+            System.Console.WriteLine($"Always same: {test.AlwaysSame}");                
         }
 
         static void Logger()
