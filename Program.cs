@@ -19,6 +19,7 @@ using System.Linq;
 using StaticCtorException;
 using Logger;
 using PropertyInitializers;
+using FPCircle;
 
 namespace VSCode
 {
@@ -26,7 +27,34 @@ namespace VSCode
     {
         static void Main(string[] args)
         {
-            PropertyInitializers();    
+            FpCircle();
+        }
+
+        static void FpCircle() 
+        {
+            var radius = 12.3;
+            var circle = new FpCircle(radius);
+
+            // get circle's info
+            System.Console.WriteLine($"Circumference: {circle.Circumference}");
+            System.Console.WriteLine($"Area: {circle.Area}");
+            System.Console.WriteLine($"Radius {circle.Radius}");
+
+            // get stats tuple
+            var stats = circle.Stats;
+            System.Console.WriteLine($"Area: {stats.Area}, Circumference: {stats.Circumference}");
+        }
+
+        static void FuncTest()
+        {
+            Func<int, int> triple = x => x * 3;
+            var range = Enumerable.Range(1,3);
+            // filter
+            var triples = range.Select(triple);
+            foreach (var item in triples)
+            {
+                System.Console.WriteLine(item);
+            }
         }
 
         static void PropertyInitializers()
