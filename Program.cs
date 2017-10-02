@@ -20,14 +20,22 @@ using StaticCtorException;
 using Logger;
 using PropertyInitializers;
 using FPCircle;
+using InterlockedTest;
 
 namespace VSCode
 {
     class Program
     {
         static void Main(string[] args)
+        {           
+            Interlocked();
+        }
+
+        static void Interlocked()
         {
-            FpCircle();
+            var locks = new LockTest();
+            locks.Run();
+            System.Console.WriteLine($"{LockTest.totalCount}");
         }
 
         static void FpCircle() 
@@ -50,6 +58,7 @@ namespace VSCode
             Func<int, int> triple = x => x * 3;
             var range = Enumerable.Range(1,3);
             // filter
+            // .Select === Map in functional lang
             var triples = range.Select(triple);
             foreach (var item in triples)
             {
