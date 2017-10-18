@@ -21,6 +21,8 @@ using Logger;
 using PropertyInitializers;
 using FPCircle;
 using InterlockedTest;
+using LazyTest;
+using Coords;
 
 namespace VSCode
 {
@@ -28,7 +30,23 @@ namespace VSCode
     {
         static void Main(string[] args)
         {           
-            Interlocked();
+            StructTest();
+        }
+
+        static void StructTest()
+        {
+            Coordinates coords;
+            // error if struct contains unassigned fields
+            coords.x = 1;
+            coords.y = 2;
+
+            coords.PrintCoordinates();
+        }
+
+        static void LazyTest()
+        {
+            var laiska = new LazyInit();
+            laiska.Init();
         }
 
         static void Interlocked()
